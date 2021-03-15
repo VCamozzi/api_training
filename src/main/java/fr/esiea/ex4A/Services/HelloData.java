@@ -1,4 +1,4 @@
-package fr.esiea.ex4A.hello;
+package fr.esiea.ex4A.Services;
 
 public class HelloData {
 

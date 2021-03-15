@@ -1,5 +1,7 @@
-package fr.esiea.ex4A.hello;
+package fr.esiea.ex4A.Controllers;
 
+import fr.esiea.ex4A.Services.HelloData;
+import fr.esiea.ex4A.Storage.HelloRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
