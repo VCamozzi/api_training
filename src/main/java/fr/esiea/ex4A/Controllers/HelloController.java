@@ -1,5 +1,7 @@
-package fr.esiea.ex4A.hello;
+package fr.esiea.ex4A.Controllers;
 
+import fr.esiea.ex4A.Services.HelloData;
+import fr.esiea.ex4A.Storage.HelloRepository;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

@@ -1,5 +1,7 @@
-package fr.esiea.ex4A.hello;
+package fr.esiea.ex4A.Storage;
 
+import fr.esiea.ex4A.Services.HelloData;
+import fr.esiea.ex4A.Storage.HelloRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
