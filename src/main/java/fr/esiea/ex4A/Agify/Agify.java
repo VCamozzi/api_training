@@ -1,4 +1,4 @@
-package fr.esiea.ex4A;
+package fr.esiea.ex4A.Agify;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -32,11 +32,6 @@ public class Agify {
         this.name = name;
     }
 
-    public Agify withName(String name) {
-        this.name = name;
-        return this;
-    }
-
     @JsonProperty("age")
     public Integer getAge() {
         return age;
@@ -45,11 +40,6 @@ public class Agify {
     @JsonProperty("age")
     public void setAge(Integer age) {
         this.age = age;
-    }
-
-    public Agify withAge(Integer age) {
-        this.age = age;
-        return this;
     }
 
     @JsonProperty("count")
@@ -62,11 +52,6 @@ public class Agify {
         this.count = count;
     }
 
-    public Agify withCount(Integer count) {
-        this.count = count;
-        return this;
-    }
-
     @JsonProperty("country_id")
     public String getCountryId() {
         return countryId;
@@ -77,8 +62,4 @@ public class Agify {
         this.countryId = countryId;
     }
 
-    public Agify withCountryId(String countryId) {
-        this.countryId = countryId;
-        return this;
-    }
 }
