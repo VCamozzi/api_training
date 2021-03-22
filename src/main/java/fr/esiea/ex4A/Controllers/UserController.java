@@ -1,14 +1,16 @@
 package fr.esiea.ex4A.Controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.esiea.ex4A.Agify.Agify;
+import fr.esiea.ex4A.Agify.AgifyClient;
 import fr.esiea.ex4A.Match;
+import fr.esiea.ex4A.Services.AgifyServices;
 import fr.esiea.ex4A.Storage.UserRepository;
 import fr.esiea.ex4A.User;
-    import org.springframework.http.MediaType;
-    import org.springframework.web.bind.annotation.*;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,9 +18,13 @@ import java.util.Map;
 class UserController {
 
     private final UserRepository userRepository;
+    private final AgifyClient client;
+    private final AgifyServices services;
 
-    UserController(UserRepository userRepository) {
+    UserController(UserRepository userRepository, AgifyClient client, AgifyServices services) {
         this.userRepository = userRepository;
+        this.client = client;
+        this.services = services;
     }
 
     @PostMapping(path = "/api/inscription", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -34,18 +40,12 @@ class UserController {
 
     @GetMapping(path="/api/matches", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    String matchSearch(@RequestParam(name="userName", required=true) String userName, @RequestParam(name="userCountry", required=true) String userCountry)  throws IOException{
+    String matchSearch(@RequestParam(name="userName", required=true) String userName,
+                       @RequestParam(name="userCountry", required=true) String userCountry) throws IOException{
+
+        Agify user = services.getAgeFromNameAndCountry(userName, userCountry);
+        List<Match> matchList = services.getMatchFromAge(user.getAge());
         ObjectMapper mapper = new ObjectMapper();
-        Match match = new Match("toto", "totodu26");
-        Match match2 = new Match("tata", "tatadu77");
-
-        List<Match> matchList = new ArrayList<>();
-        matchList.add(match);
-        matchList.add(match2);
-        String result = mapper.writeValueAsString(matchList);
-
-        return result;
+        return mapper.writeValueAsString(matchList);
     }
-
-
 }
