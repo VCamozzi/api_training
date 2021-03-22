@@ -29,13 +29,10 @@ class UserController {
 
     @PostMapping(path = "/api/inscription", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    User addUser(@RequestBody Map<String,String> body){
+    String addUser(@RequestBody Map<String,String> body){
         User user = new User(body.get("userName"), body.get("userMail"), body.get("userTwitter"), body.get("userCountry"), body.get("userSex"), body.get("userSexPref"));
         userRepository.addUser(user);
-        for (User userInList : userRepository.getUsers()){
-            System.out.println(userInList.getuName());
-        }
-        return user;
+        return "OK";
     }
 
     @GetMapping(path="/api/matches", produces = MediaType.APPLICATION_JSON_VALUE)
