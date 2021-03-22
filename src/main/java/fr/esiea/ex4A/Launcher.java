@@ -15,16 +15,14 @@ import java.io.IOException;
 public class Launcher {
 
     @Bean
-    Agify createAgifyUser() throws IOException {
+    AgifyClient createAgifyClient() throws IOException {
         AgifyClient client = new Retrofit.Builder()
             .baseUrl("http://api.agify.io")
             .addConverterFactory(JacksonConverterFactory.create())
             .build()
             .create(AgifyClient.class);
 
-        Call<Agify> userTest = client.getAge("Valentin", "FR");
-        Agify user = userTest.execute().body();
-        return user;
+        return client;
     }
 
     public static void main(String[] args) {

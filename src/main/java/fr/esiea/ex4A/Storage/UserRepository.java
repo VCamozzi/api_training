@@ -11,9 +11,9 @@ public class UserRepository {
     private List<User> userList = new ArrayList<User>();
 
     public UserRepository() {
-        User user1 = new User("camozzi", "camozzi@et.esiea.fr", "@Val0u1", "FR", "M", "F");
+        User user1 = new User("valentin", "camozzi@et.esiea.fr", "@Val0u1", "FR", "M", "F");
         userList.add(user1);
-        User user2 = new User("tchiasso", "tchiasso@et.esiea.fr", "@tontonarmel", "FR", "F", "M");
+        User user2 = new User("armel", "tchiasso@et.esiea.fr", "@tontonarmel", "FR", "F", "M");
         userList.add(user2);
     }
     public List<User> getUsers(){
