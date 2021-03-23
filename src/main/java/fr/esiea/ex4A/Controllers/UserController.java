@@ -40,7 +40,9 @@ class UserController {
     String matchSearch(@RequestParam(name="userName", required=true) String userName,
                        @RequestParam(name="userCountry", required=true) String userCountry) throws IOException{
 
+        //on recupère l'age de l'utilisateur
         Agify user = services.getAgeFromNameAndCountry(userName, userCountry);
+        //on recupère la list de ses match
         List<Match> matchList = services.getMatchFromAge(user.getAge());
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(matchList);

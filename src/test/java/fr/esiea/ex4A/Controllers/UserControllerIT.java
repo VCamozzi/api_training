@@ -25,18 +25,25 @@ class UserControllerIT {
     }
 
     @Test
+    void matchSearch() throws Exception {
+        mockMvc
+            .perform(MockMvcRequestBuilders.get("/api/matches?userName=valentin&userCountry=FR"))
+            .andExpect(status().isOk())
+            .andExpect(content().json("""
+                [{"name":"maxime","twitter":"maxime_grz"},
+                {"name":"chloe","twitter":"chloe67"},
+                {"name":"elise","twitter":"elise34"}]"""
+            ));
+    }
+
+    @Test
     void addUser() throws Exception {
-        User user = new User("matteo", "matteo@et.esiea.fr", "allomsquintero", "FR", "M", "F");
+        User user = new User("valentin", "camozzi@et.esiea.fr", "Val0u1", "FR", "M", "F");
         ObjectMapper mapper = new ObjectMapper();
         String result = mapper.writeValueAsString(user);
         mockMvc
             .perform(MockMvcRequestBuilders.post("/api/inscription").contentType(MediaType.APPLICATION_JSON_VALUE).content(result))
             .andExpect(status().isOk())
             .andExpect(content().string("OK"));
-    }
-
-    @Test
-    void matchSearch() {
-        
     }
 }
