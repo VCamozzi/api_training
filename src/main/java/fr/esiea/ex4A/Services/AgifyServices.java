@@ -28,11 +28,13 @@ public class AgifyServices {
     public ArrayList<Match> getMatchFromAge(int userAge) throws IOException {
         ArrayList<Match> matchList = new ArrayList<Match>();
         for (User match : repository.getUsers()){
-            int matchAge = getAgeFromNameAndCountry(match.getuName(), match.getuCountry()).getAge();
-            int ageDiff = (userAge - matchAge);
-            if (ageDiff <= 4 && ageDiff >= -4 ){
-                Match newMatch = new Match(match.getuName(), match.getuTweeter());
-                matchList.add(newMatch);
+            if (match.getuName() != null) {
+                int matchAge = getAgeFromNameAndCountry(match.getuName(), match.getuCountry()).getAge();
+                int ageDiff = (userAge - matchAge);
+                if (ageDiff <= 4 && ageDiff >= -4) {
+                    Match newMatch = new Match(match.getuName(), match.getuTweeter());
+                    matchList.add(newMatch);
+                }
             }
         }
         return matchList;
