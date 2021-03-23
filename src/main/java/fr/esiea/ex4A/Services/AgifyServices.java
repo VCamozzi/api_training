@@ -47,7 +47,7 @@ public class AgifyServices {
         int value;
         if (cache.containsKey(user.getuName() + user.getuCountry())){
             value = cache.get(user.getuName() + user.getuCountry());
-            System.out.println("récupération du chache : " + value + " pour : " + user.getuName());
+            System.out.println("récupération du chache : " + value + " - " + user.getuName());
         }else{
             Agify agifyUser = getAgeFromNameAndCountry(user.getuName(), user.getuCountry());
             cache.put(user.getuName() + user.getuCountry(), agifyUser.getAge());
