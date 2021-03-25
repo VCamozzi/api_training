@@ -36,12 +36,8 @@ public class AgifyServices {
                 int ageDiff = (userAge - matchAge);
                 if (ageDiff <= 4 && ageDiff >= -4) {
                     Match newMatch = new Match(match.getuName(), match.getuTweeter());
-                    matchList.add(newMatch);
-                }
-            }
-        }
-        return matchList;
-    }
+                    matchList.add(newMatch); } } }
+        return matchList; }
 
     public int IsInCache(User user) throws IOException {
         int value;
@@ -52,8 +48,5 @@ public class AgifyServices {
             Agify agifyUser = getAgeFromNameAndCountry(user.getuName(), user.getuCountry());
             cache.put(user.getuName() + user.getuCountry(), agifyUser.getAge());
             value = agifyUser.getAge();
-            System.out.println("mise en cache : " + user.getuName() + " - " + user.getuCountry() + " - " + value);
-        }
-        return value;
-    }
-}
+            System.out.println("mise en cache : " + user.getuName() + " - " + user.getuCountry() + " - " + value); }
+        return value; }}
