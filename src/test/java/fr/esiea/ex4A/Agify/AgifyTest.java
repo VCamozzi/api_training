@@ -6,6 +6,8 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
+import java.util.Map;
+
 class AgifyTest {
 
     @Test
@@ -16,9 +18,9 @@ class AgifyTest {
             .build()
             .create(AgifyClient.class);
 
-        Call<Agify> userTest = client.getAge("Valentin", "FR");
-        Agify user = userTest.execute().body();
-        return user;
+        Call<Map<String, String>> userTest = client.getAge("Valentin", "FR");
+        Map<String, String> userFinal = userTest.execute().body();
+        return new Agify(userFinal.get("name"), Integer.parseInt(userFinal.get("age")),Integer.parseInt(userFinal.get("count")),userFinal.get("country_id"));
     }
 
     @Test
@@ -28,23 +30,9 @@ class AgifyTest {
     }
 
     @Test
-    void setName() throws Exception {
-        Agify user = createAgifyUser();
-        user.setName("Camozzi");
-        Assertions.assertEquals("Camozzi", user.getName());
-    }
-
-    @Test
     void getAge() throws Exception {
         Agify user = createAgifyUser();
         Assertions.assertEquals(26, user.getAge());
-    }
-
-    @Test
-    void setAge() throws Exception {
-        Agify user = createAgifyUser();
-        user.setAge(30);
-        Assertions.assertEquals(30, user.getAge());
     }
 
     @Test
@@ -54,22 +42,8 @@ class AgifyTest {
     }
 
     @Test
-    void setCount() throws Exception {
-        Agify user = createAgifyUser();
-        user.setCount(667);
-        Assertions.assertEquals(667, user.getCount());
-    }
-
-    @Test
     void getCountryId() throws Exception {
         Agify user = createAgifyUser();
         Assertions.assertEquals("FR", user.getCountryId());
-    }
-
-    @Test
-    void setCountryId() throws Exception {
-        Agify user = createAgifyUser();
-        user.setCountryId("US");
-        Assertions.assertEquals("US", user.getCountryId());
     }
 }

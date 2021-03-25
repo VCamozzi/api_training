@@ -6,6 +6,8 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
+import java.util.Map;
+
 class AgifyClientIT {
 
     @Test
@@ -16,8 +18,9 @@ class AgifyClientIT {
             .build()
             .create(AgifyClient.class);
 
-        Call<Agify> userTest = client.getAge("Valentin", "FR");
-        Agify user = userTest.execute().body();
+        Call<Map<String, String>> userTest = client.getAge("Valentin", "FR");
+        Map<String, String> userMap = userTest.execute().body();
+        Agify user =  new Agify(userMap.get("name"), Integer.parseInt(userMap.get("age")),Integer.parseInt(userMap.get("count")),userMap.get("country_id"));
         Assertions.assertEquals(26, user.getAge());
         Assertions.assertEquals("FR", user.getCountryId());
         Assertions.assertEquals("Valentin", user.getName());

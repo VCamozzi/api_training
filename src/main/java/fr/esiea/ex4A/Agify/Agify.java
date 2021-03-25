@@ -14,22 +14,24 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Agify {
 
     @JsonProperty("name")
-    private String name;
+    private final String name;
     @JsonProperty("age")
-    private Integer age;
+    private final Integer age;
     @JsonProperty("count")
-    private Integer count;
+    private final Integer count;
     @JsonProperty("country_id")
-    private String countryId;
+    private final String countryId;
+
+    public Agify(String name, Integer age, Integer count, String countryId) {
+        this.name = name;
+        this.age = age;
+        this.count = count;
+        this.countryId = countryId;
+    }
 
     @JsonProperty("name")
     public String getName() {
         return name;
-    }
-
-    @JsonProperty("name")
-    public void setName(String name) {
-        this.name = name;
     }
 
     @JsonProperty("age")
@@ -37,29 +39,14 @@ public class Agify {
         return age;
     }
 
-    @JsonProperty("age")
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
     @JsonProperty("count")
     public Integer getCount() {
         return count;
     }
 
-    @JsonProperty("count")
-    public void setCount(Integer count) {
-        this.count = count;
-    }
-
     @JsonProperty("country_id")
     public String getCountryId() {
         return countryId;
-    }
-
-    @JsonProperty("country_id")
-    public void setCountryId(String countryId) {
-        this.countryId = countryId;
     }
 
 }
