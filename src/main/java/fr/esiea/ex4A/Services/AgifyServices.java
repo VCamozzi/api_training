@@ -24,8 +24,9 @@ public class AgifyServices {
     }
 
     public Agify getAgeFromNameAndCountry(String name, String countryCode) throws IOException {
-        Agify user = (Agify) client.getAge(name, countryCode).execute().body();
-        return user;
+        Map<String, String> userMap = client.getAge(name,countryCode).execute().body();
+        Agify userFinal =  new Agify(userMap.get("name"), Integer.parseInt(userMap.get("age")),Integer.parseInt(userMap.get("count")),userMap.get("country_id"));
+        return userFinal;
     }
 
     public ArrayList<Match> getMatchFromAge(int userAge) throws IOException {
